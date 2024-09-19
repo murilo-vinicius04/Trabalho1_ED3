@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "estruturas.h"
+#include "registro.h"
 #include "funcionalidades.h"
 
 int main()

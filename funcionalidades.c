@@ -1,22 +1,35 @@
-#include "registro.h"
 #include "auxiliares.h"
+#include "cabecalho.h"
+#include "registro.h"
 
 // a funcao recebe ponteiro de arquivo e printa suas informacoes da forma formatada
 void select_from(FILE *arquivo)
 {
-    // Primeiro abrimos o arquivo e lemos primeiro registro
+    // alocamos a memoria do registro temporario e do cabecalho
     Registro *registro_temporario = (Registro *)malloc(sizeof(Registro));
+    Cabecalho *cabecalho = (Cabecalho *)malloc(sizeof(Cabecalho));
 
     // primeiro abrimos o arquivo e contamos o numero de registros
     int tamanho = tamanho_bytes(arquivo);
 
-    // por fim, pegamos as informacoes e printamos
-    for (int offset = 0; offset < tamanho; offset += 160)
+    // lemos o cabecalho do arquivo
+    le_cabecalho(cabecalho, arquivo);
+
+    // pegamos as informacoes e printamos
+    for (int offset = 1600; offset < tamanho; offset += 160)
     {
         le_registro(registro_temporario, arquivo, offset);
-        printa_formatado(registro_temporario);
+        if (!removido(registro_temporario))
+        {
+            printa_formatado(registro_temporario);
+            printf("\n");
+        }
     }
 
+    // printamos numero de paginas
+    printf("Numero de paginas de disco: %d\n", cabecalho->nroPagDisco);
+
     // por fim libera o registro temporario
-    free(registro_temporario);
+    libera_registro(registro_temporario);
+    free(cabecalho);
 }
