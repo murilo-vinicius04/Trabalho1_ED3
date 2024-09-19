@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "estruturas.c"
-
+#include "estruturas.h"
+#include "funcionalidades.h"
 
 int main()
 {
@@ -23,6 +23,7 @@ int main()
         case 1:
             break;
         case 2:
+            select_from(arquivo);
             break;
         case 3:
             break;

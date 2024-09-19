@@ -1,0 +1,4 @@
+#ifndef FUNCIONALIDADES
+#define FUNCIONALIDADES
+
+#endif
