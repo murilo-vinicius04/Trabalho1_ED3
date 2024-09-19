@@ -10,4 +10,6 @@ registro: contem a classe registro
 
 cabecalho: contem a classe cabecalho
 
+variavel: contem a classe variavel
+
 main: o programa principal que vai ser executado
