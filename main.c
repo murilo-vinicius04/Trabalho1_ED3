@@ -33,7 +33,7 @@ int main()
     }
 
     // fecha o arquivo
-    fclose(arquivo);
+    fclose(arquivo_binario);
 
     return 0;
 }
