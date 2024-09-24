@@ -6,4 +6,6 @@
 
 int tamanho_bytes(FILE *arquivo);
 
+void binarioNaTela(char *nomeArquivoBinario);
+
 #endif
