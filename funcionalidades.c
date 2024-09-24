@@ -135,3 +135,27 @@ void gravarRegistroBinario(FILE *arquivo_binario, Registro *registro) {
         fwrite(&preenchimento, sizeof(char), 1, arquivo_binario);
     }
 }
+
+void create_table(FILE *arquivo_binario, FILE *arquivo_csv) {
+        if (!pularCabecalho(arquivo_csv)) {
+        printf("Erro ao pular o cabeçalho.\n");
+        return 1;
+    }
+
+    Registro registro;
+    Cabecalho cabecalho;
+
+    inicia_cabecalho(arquivo_binario, &cabecalho);
+
+    while (!feof(arquivo_csv)) {
+        lerRegistroCSV(arquivo_csv, &registro);
+        gravarRegistroBinario(arquivo_binario, &registro);
+        liberarRegistro(&registro);  // Libera a memória alocada para cada registro
+    }
+
+    fclose(arquivo_csv);
+    fclose(arquivo_binario);
+
+    // Exibe o tamanho do arquivo binário e o conteúdo para comparação
+    binarioNaTela("saida.bin");
+}

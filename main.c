@@ -6,24 +6,21 @@ int main()
 {
     // primeiro recebemos as informacoes que precisamos
     int n;
-    char nome[20];
-    scanf("%d %s", &n, nome);
+    char binario[20], csv[20];
+    scanf("%d %s %s", &n, binario, csv);
 
     // busca o arquivo
-    FILE *arquivo = fopen(nome, "r+");
-    if (arquivo == NULL)
-    {
-        printf("Falha no processamento do arquivo\n");
-        return 1;
-    }
+    FILE *arquivo_csv = fopen(csv, "r");
+    FILE *arquivo_binario = fopen(binario, "wb");
 
     // executa funcionalidade desejada
     switch (n)
     {
         case 1:
+            create_table(arquivo_binario, arquivo_csv);
             break;
         case 2:
-            select_from(arquivo);
+            select_from(arquivo_binario);
             break;
         case 3:
             break;
